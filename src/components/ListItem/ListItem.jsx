@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import css from './ListItem.module.css';
 import { CiSquareRemove } from 'react-icons/ci';
-import { FaPhoneSquare } from 'react-icons/fa';
+import { FaPhoneSquare, FaPhone } from 'react-icons/fa';
 import { AiOutlineStar } from 'react-icons/ai';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 
@@ -21,7 +21,7 @@ const ListItem = ({ id, name, number, url, deleteContact }) => {
       </div>
 
       <button className={css.button} type="button">
-        <FaPhoneSquare className={css.callIcon} />
+        <FaPhone className={css.callIcon} />
       </button>
 
       {/* <button className={css.button} type="button">
