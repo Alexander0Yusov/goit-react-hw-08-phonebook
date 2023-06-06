@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import css from './ListItem.module.css';
 import { CiSquareRemove } from 'react-icons/ci';
-import { FaPhoneSquare, FaPhone } from 'react-icons/fa';
-import { AiOutlineStar } from 'react-icons/ai';
-import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+import { FaPhone } from 'react-icons/fa';
+// import { AiOutlineStar } from 'react-icons/ai';
+import { MdFavoriteBorder } from 'react-icons/md';
 
 const ListItem = ({ id, name, number, url, deleteContact }) => {
   return (
