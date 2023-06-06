@@ -1,5 +1,9 @@
 import PropTypes from 'prop-types';
 import css from './ListItem.module.css';
+import { CiSquareRemove } from 'react-icons/ci';
+import { FaPhoneSquare } from 'react-icons/fa';
+import { AiOutlineStar } from 'react-icons/ai';
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 
 const ListItem = ({ id, name, number, url, deleteContact }) => {
   return (
@@ -8,6 +12,7 @@ const ListItem = ({ id, name, number, url, deleteContact }) => {
         {url && (
           <img className={css.photoDemo} src={url} alt="User portrait"></img>
         )}
+        <MdFavoriteBorder className={css.favoriteIcon} />
       </div>
 
       <div className={css.dataBox}>
@@ -15,12 +20,20 @@ const ListItem = ({ id, name, number, url, deleteContact }) => {
         <p className={css.pNumber}>{number}</p>
       </div>
 
+      <button className={css.button} type="button">
+        <FaPhoneSquare className={css.callIcon} />
+      </button>
+
+      {/* <button className={css.button} type="button">
+        <AiOutlineStar className={css.starIcon} />
+      </button> */}
+
       <button
         onClick={() => deleteContact(id)}
         className={css.button}
         type="button"
       >
-        Delete
+        <CiSquareRemove className={css.removeIcon} />
       </button>
     </li>
   );

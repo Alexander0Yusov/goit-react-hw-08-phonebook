@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const MAIN_PATH = 'https://647bc928c0bae2880ad03fe8.mockapi.io/contacts';
+const MAIN_PATH = 'https://647bc928c0bae2880ad03fe8.mockapi.io/contacts_';
 
 export const getContactsDB = async () => {
   return await axios.get(MAIN_PATH);
