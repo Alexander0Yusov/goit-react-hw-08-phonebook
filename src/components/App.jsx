@@ -10,9 +10,18 @@ import css from './App.module.css';
 
 export const App = () => {
   const [showModal, setShowModal] = useState(false);
+  const [userNameModal, setUserNameModal] = useState('');
+  const [userNumberModal, setUserNumberModal] = useState('');
+  const [userUrlModal, setUserUrlModal] = useState('');
 
   const toggleModal = () => {
     setShowModal(prev => !prev);
+  };
+
+  const fillForm = (name, number, url) => {
+    setUserNameModal(name);
+    setUserNumberModal(number);
+    setUserUrlModal(url);
   };
 
   return (
@@ -26,16 +35,23 @@ export const App = () => {
         alignItems: 'center',
         fontSize: 40,
         color: '#010101',
+        // overflow: 'auto',
       }}
     >
       <Section>
         <h2 className={css.title}>Phonebook</h2>
         <Filter onModalOpen={toggleModal} />
-        <Contacts />
+        <Contacts toggleModal={toggleModal} fillForm={fillForm} />
       </Section>
       {showModal && (
         <Modal onClose={toggleModal}>
-          <Form toggleModal={toggleModal}></Form>
+          <Form
+            toggleModal={toggleModal}
+            nameIni={userNameModal}
+            numberIni={userNumberModal}
+            urlIni={userUrlModal}
+            fillForm={fillForm}
+          ></Form>
         </Modal>
       )}
     </div>

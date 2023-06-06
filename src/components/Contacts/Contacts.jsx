@@ -10,7 +10,7 @@ import {
 const contactsSelector = state => state.contactsDBCombine;
 const filterSelector = state => state.filterCombine;
 
-const Contacts = () => {
+const Contacts = ({ toggleModal, fillForm }) => {
   const dispatch = useDispatch();
   const { contacts, error, isLoading } = useSelector(contactsSelector);
   const { filter } = useSelector(filterSelector);
@@ -21,7 +21,9 @@ const Contacts = () => {
 
   const filterByName = () => {
     const lowName = filter?.toLowerCase();
-    return contacts.filter(item => item.name?.toLowerCase().includes(lowName));
+    return contacts
+      .filter(item => item.name?.toLowerCase().includes(lowName))
+      .sort((a, b) => a.name.localeCompare(b.name));
   };
 
   const deleteHandler = id => {
@@ -39,6 +41,8 @@ const Contacts = () => {
             number={number}
             url={url}
             deleteContact={deleteHandler}
+            toggleModal={toggleModal}
+            fillForm={fillForm}
           />
         ))}
       </ul>

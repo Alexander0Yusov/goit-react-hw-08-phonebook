@@ -3,16 +3,44 @@ import css from './ListItem.module.css';
 import { CiSquareRemove } from 'react-icons/ci';
 import { FaPhone } from 'react-icons/fa';
 // import { AiOutlineStar } from 'react-icons/ai';
-import { MdFavoriteBorder } from 'react-icons/md';
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+import { useState } from 'react';
 
-const ListItem = ({ id, name, number, url, deleteContact }) => {
+const ListItem = ({
+  id,
+  name,
+  number,
+  url,
+  deleteContact,
+  toggleModal,
+  fillForm,
+}) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const listItemClickHandler = e => {
+    const clickTag = e.target.tagName;
+    if (clickTag === 'LI' || clickTag === 'P') {
+      toggleModal();
+      fillForm(name, number, url);
+    }
+  };
+
   return (
-    <li className={css.listItem}>
-      <div className={css.imageThumb}>
+    <li className={css.listItem} onClick={listItemClickHandler}>
+      <div
+        className={css.imageThumb}
+        onClick={() => {
+          setIsFavorite(!isFavorite);
+        }}
+      >
         {url && (
           <img className={css.photoDemo} src={url} alt="User portrait"></img>
         )}
-        <MdFavoriteBorder className={css.favoriteIcon} />
+        {isFavorite ? (
+          <MdFavorite className={css.favoriteIcon} />
+        ) : (
+          <MdFavoriteBorder className={css.favoriteBorderIcon} />
+        )}
       </div>
 
       <div className={css.dataBox}>

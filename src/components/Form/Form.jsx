@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { postContactDBThunk } from 'redux/contactsDB/thunks';
 
-const Form = ({ toggleModal }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const [url, setUrl] = useState('');
+const Form = ({ toggleModal, nameIni, numberIni, urlIni, fillForm }) => {
+  const [name, setName] = useState(nameIni);
+  const [number, setNumber] = useState(numberIni);
+  const [url, setUrl] = useState(urlIni);
 
   const dispatch = useDispatch();
   const { contacts } = useSelector(state => state.contactsDBCombine);
@@ -36,6 +36,7 @@ const Form = ({ toggleModal }) => {
 
     addUser({ name, number, url });
     toggleModal();
+    fillForm('', '', '');
   };
 
   const handlerChangeName = e => {

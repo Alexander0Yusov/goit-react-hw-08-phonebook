@@ -1,6 +1,8 @@
 .container {
   width: 340px;
-  text-align: center;
+  height: 99vh;
+  /* overflow-y: auto; */
 
+  text-align: center;
   background-color: #242527;
 }
