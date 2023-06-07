@@ -1,5 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getContactsDB, postContactDB, deleteContactDB } from './requests';
+import {
+  getContactsDB,
+  postContactDB,
+  deleteContactDB,
+  putContactDB,
+} from './requests';
 
 // не отрабатывает редьюсер .rejected, поэтому try-catch
 
@@ -19,6 +24,17 @@ export const postContactDBThunk = createAsyncThunk(
   async item => {
     try {
       return await postContactDB(item);
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const putContactDBThunk = createAsyncThunk(
+  'contactsDB/putContact',
+  async (id, item) => {
+    try {
+      return await putContactDB(id, item);
     } catch (error) {
       return error;
     }

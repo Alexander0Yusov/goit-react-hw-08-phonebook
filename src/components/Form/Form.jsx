@@ -5,9 +5,9 @@ import css from './Form.module.css';
 import PropTypes from 'prop-types';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { postContactDBThunk } from 'redux/contactsDB/thunks';
+import { postContactDBThunk, putContactDBThunk } from 'redux/contactsDB/thunks';
 
-const Form = ({ toggleModal, nameIni, numberIni, urlIni, fillForm }) => {
+const Form = ({ toggleModal, id, nameIni, numberIni, urlIni, actionModal }) => {
   const [name, setName] = useState(nameIni);
   const [number, setNumber] = useState(numberIni);
   const [url, setUrl] = useState(urlIni);
@@ -22,21 +22,23 @@ const Form = ({ toggleModal, nameIni, numberIni, urlIni, fillForm }) => {
 
   const addUser = newItem => {
     const decisionForAdd = isIncludingName(newItem.name, contacts);
-
     if (decisionForAdd) {
       alert(`${decisionForAdd.name} is already in contacts !`);
       return;
     }
-
     dispatch(postContactDBThunk(newItem));
+  };
+
+  const editUser = newItem => {
+    dispatch(putContactDBThunk(newItem));
   };
 
   const handlerSubmit = e => {
     e.preventDefault();
+    actionModal === 'Add' && addUser({ name, number, url });
+    actionModal === 'Edit' && editUser({ id, name, number, url });
 
-    addUser({ name, number, url });
     toggleModal();
-    fillForm('', '', '');
   };
 
   const handlerChangeName = e => {
@@ -103,7 +105,7 @@ const Form = ({ toggleModal, nameIni, numberIni, urlIni, fillForm }) => {
       </label>
 
       <button className={css.button} type="submit">
-        Add
+        {actionModal}
       </button>
     </form>
   );

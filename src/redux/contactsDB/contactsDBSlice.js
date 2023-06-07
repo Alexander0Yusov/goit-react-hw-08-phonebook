@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   getContactsDBThunk,
   postContactDBThunk,
+  putContactDBThunk,
   deleteContactDBThunk,
 } from './thunks';
 
@@ -10,6 +11,7 @@ import {
   handlerRejected,
   handlerFulfilledGet,
   handlerFulfilledPost,
+  handlerFulfilledPut,
   handlerFulfilledDelete,
 } from './handleReducers';
 
@@ -30,6 +32,10 @@ const contactsDBSlice = createSlice({
     [postContactDBThunk.pending]: handlerPending,
     [postContactDBThunk.fulfilled]: handlerFulfilledPost,
     [postContactDBThunk.rejected]: handlerRejected,
+    //=====PUT
+    [putContactDBThunk.pending]: handlerPending,
+    [putContactDBThunk.fulfilled]: handlerFulfilledPut,
+    [putContactDBThunk.rejected]: handlerRejected,
     //=====DELETE
     [deleteContactDBThunk.pending]: handlerPending,
     [deleteContactDBThunk.fulfilled]: handlerFulfilledDelete,

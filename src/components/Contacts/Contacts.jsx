@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import css from './Contacts.module.css';
-import ListItem from 'components/ListItem/ListItem';
+import { RotatingLines } from 'react-loader-spinner';
 import {
   getContactsDBThunk,
   deleteContactDBThunk,
 } from 'redux/contactsDB/thunks';
+import css from './Contacts.module.css';
+import ListItem from 'components/ListItem/ListItem';
 
 const contactsSelector = state => state.contactsDBCombine;
 const filterSelector = state => state.filterCombine;
@@ -47,7 +48,19 @@ const Contacts = ({ toggleModal, fillForm }) => {
         ))}
       </ul>
       {error && <h4>{error}</h4>}
-      {isLoading && <h6>{'Loading...'}</h6>}
+      {isLoading && (
+        <p>
+          {
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="96"
+              visible={true}
+            />
+          }
+        </p>
+      )}
     </div>
   );
 };

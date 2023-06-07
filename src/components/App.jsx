@@ -10,18 +10,30 @@ import css from './App.module.css';
 
 export const App = () => {
   const [showModal, setShowModal] = useState(false);
+  const [userIdModal, setUserIdModal] = useState('');
   const [userNameModal, setUserNameModal] = useState('');
   const [userNumberModal, setUserNumberModal] = useState('');
   const [userUrlModal, setUserUrlModal] = useState('');
+  const [actionModal, setActionModal] = useState('Add');
 
-  const toggleModal = () => {
-    setShowModal(prev => !prev);
-  };
-
-  const fillForm = (name, number, url) => {
+  const fillForm = (id, name, number, url) => {
+    setUserIdModal(id);
     setUserNameModal(name);
     setUserNumberModal(number);
     setUserUrlModal(url);
+    setActionModal('Edit');
+  };
+
+  const resetForm = () => {
+    setUserNameModal('');
+    setUserNumberModal('');
+    setUserUrlModal('');
+    setActionModal('Add');
+  };
+
+  const toggleModal = () => {
+    setShowModal(prev => !prev);
+    resetForm();
   };
 
   return (
@@ -47,10 +59,11 @@ export const App = () => {
         <Modal onClose={toggleModal}>
           <Form
             toggleModal={toggleModal}
+            id={userIdModal}
             nameIni={userNameModal}
             numberIni={userNumberModal}
             urlIni={userUrlModal}
-            fillForm={fillForm}
+            actionModal={actionModal}
           ></Form>
         </Modal>
       )}
@@ -73,5 +86,6 @@ export const App = () => {
 // темизация(цветность) emotion 'dark/light'
 // кастомный хук по типу hook useLocalStorage video_1 1:06
 // при загрузке можно кнопки disable=true
+// стилизация прокрутки
 
 // ошибка в юзэффекте не дает норм деплой

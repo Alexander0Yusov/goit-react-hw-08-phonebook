@@ -28,6 +28,18 @@ export const handlerFulfilledPost = (state, { payload }) => {
   state.error = null;
 };
 
+export const handlerFulfilledPut = (state, { payload }) => {
+  state.isLoading = false;
+  if (payload.message) {
+    alert(payload.message);
+    return;
+  }
+  state.contacts = state.contacts
+    .filter(({ id }) => id !== payload.data.id)
+    .concat([payload.data]);
+  state.error = null;
+};
+
 export const handlerFulfilledDelete = (state, { payload }) => {
   state.isLoading = false;
   if (payload.message) {
