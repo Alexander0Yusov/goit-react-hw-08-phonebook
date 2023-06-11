@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 50px;
+  outline: 1px solid tomato;
+}
+
+.logo {
+  display: none;
+}
+
+.navbar {
+  display: flex;
+  gap: 30px;
+  justify-content: space-around;
+
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: block;
+  font-size: 16px;
+}
+
+.link {
+  text-decoration: none;
+  color: azure;
+
+  &:hover {
+    color: white;
+    text-decoration: underline;
+  }
+}

@@ -1,40 +1,46 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
-import Section from './Section/Section';
-import Form from './Form/Form';
-import Contacts from './Contacts/Contacts';
-import Filter from './Filter/Filter';
-import Modal from './Modal/Modal';
+// import Section from './Section/Section';
+// import Form from './Form/Form';
+// import ContactList from './ContactList/ContactList';
+// import Filter from './Filter/Filter';
+// import Modal from './Modal/Modal';
 
 import css from './App.module.css';
+import { Routes, Route } from 'react-router-dom';
+import SharedLayout from 'pages/SharedLayout/SharedLayout';
+import Home from 'pages/Home/Home';
+import Contacts from 'pages/Contacts/Contacts';
+import Login from 'pages/Login/Login';
+import Register from 'pages/Register/Register';
 
 export const App = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [userIdModal, setUserIdModal] = useState('');
-  const [userNameModal, setUserNameModal] = useState('');
-  const [userNumberModal, setUserNumberModal] = useState('');
-  const [userUrlModal, setUserUrlModal] = useState('');
-  const [actionModal, setActionModal] = useState('Add');
+  // const [showModal, setShowModal] = useState(false);
+  // const [userIdModal, setUserIdModal] = useState('');
+  // const [userNameModal, setUserNameModal] = useState('');
+  // const [userNumberModal, setUserNumberModal] = useState('');
+  // const [userUrlModal, setUserUrlModal] = useState('');
+  // const [actionModal, setActionModal] = useState('Add');
 
-  const fillForm = (id, name, number, url) => {
-    setUserIdModal(id);
-    setUserNameModal(name);
-    setUserNumberModal(number);
-    setUserUrlModal(url);
-    setActionModal('Edit');
-  };
+  // const fillForm = (id, name, number, url) => {
+  //   setUserIdModal(id);
+  //   setUserNameModal(name);
+  //   setUserNumberModal(number);
+  //   setUserUrlModal(url);
+  //   setActionModal('Edit');
+  // };
 
-  const resetForm = () => {
-    setUserNameModal('');
-    setUserNumberModal('');
-    setUserUrlModal('');
-    setActionModal('Add');
-  };
+  // const resetForm = () => {
+  //   setUserNameModal('');
+  //   setUserNumberModal('');
+  //   setUserUrlModal('');
+  //   setActionModal('Add');
+  // };
 
-  const toggleModal = () => {
-    setShowModal(prev => !prev);
-    resetForm();
-  };
+  // const toggleModal = () => {
+  //   setShowModal(prev => !prev);
+  //   resetForm();
+  // };
 
   return (
     <div
@@ -50,10 +56,19 @@ export const App = () => {
         // overflow: 'auto',
       }}
     >
-      <Section>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/contacts" element={<Contacts />} />
+        </Route>
+      </Routes>
+
+      {/* <Section>
         <h2 className={css.title}>Phonebook</h2>
         <Filter onModalOpen={toggleModal} />
-        <Contacts toggleModal={toggleModal} fillForm={fillForm} />
+        <ContactList toggleModal={toggleModal} fillForm={fillForm} />
       </Section>
       {showModal && (
         <Modal onClose={toggleModal}>
@@ -66,7 +81,7 @@ export const App = () => {
             actionModal={actionModal}
           ></Form>
         </Modal>
-      )}
+      )} */}
     </div>
   );
 };
