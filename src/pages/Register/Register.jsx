@@ -4,7 +4,7 @@ import AuthForm from 'components/AuthForm/AuthForm';
 const Register = () => {
   return (
     <div className={css.register}>
-      <h2 className={css.title}>Register please</h2>
+      <h2 className={css.title}>SignUp please</h2>
       <AuthForm />
     </div>
   );

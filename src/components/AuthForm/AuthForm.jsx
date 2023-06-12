@@ -1,12 +1,65 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './AuthForm.module.css';
+// import { login } from 'redux/authService/operations';
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginThunk, signUpThunk } from 'redux/authService/thunks';
 
 const AuthForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('across88@mail.com');
+  const [password, setPassword] = useState('examplepwd12345');
+  const [action, setAction] = useState('');
+
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    location.pathname === '/register'
+      ? setAction('SignUp')
+      : setAction('Login');
+  }, [location.pathname]);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    if (action === 'SignUp') {
+      const user = {
+        name,
+        email,
+        password,
+      };
+      dispatch(signUpThunk(user));
+    }
+
+    if (action === 'Login') {
+      const user = {
+        email,
+        password,
+      };
+      dispatch(loginThunk(user));
+    }
+  };
+  // если локейшн "логин" то поле нейм скрыто Servers
 
   return (
-    <form onSubmit={() => {}} className={css.authForm} autoComplete="off">
+    <form onSubmit={handleSubmit} className={css.authForm} autoComplete="off">
+      {action === 'SignUp' && (
+        <label className={css.formLabel}>
+          <input
+            type="text"
+            name="name"
+            title="title text"
+            // required
+            value={name}
+            onChange={e => {
+              setName(e.target.value);
+            }}
+            className={css.input}
+            placeholder="Name"
+          />
+        </label>
+      )}
       <label className={css.formLabel}>
         <input
           type="text"
@@ -37,7 +90,7 @@ const AuthForm = () => {
       </label>
 
       <button className={css.button} type="submit">
-        {'Login'}
+        {action}
       </button>
     </form>
   );

@@ -13,24 +13,69 @@
 
 .navbar {
   display: flex;
-  gap: 30px;
+  gap: 4px;
   justify-content: space-around;
+  align-items: center;
 
   margin: 0;
   padding: 0;
 }
 
-li {
-  display: block;
-  font-size: 16px;
+.li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 56px;
+  font-size: 32px;
+
+  .iconHome {
+    display: block;
+    /* font-size: 32px; */
+  }
+
+  .iconList {
+    display: block;
+    font-size: 24px;
+  }
+
+  .iconAddUser {
+    display: block;
+    /* font-size: 24px; */
+  }
+
+  .iconLogin {
+    display: block;
+    font-size: 28px;
+  }
+
+  .iconLogout {
+    display: block;
+    font-size: 24px;
+  }
+
+  &:hover {
+    background-color: #3a3b3d;
+
+    .link {
+      color: #2574db;
+    }
+  }
 }
 
 .link {
   text-decoration: none;
   color: azure;
+}
 
-  &:hover {
-    color: white;
-    text-decoration: underline;
+.isActive {
+  /* text-decoration: underline; */
+
+  .li {
+    background-color: #3a3b3d;
+  }
+
+  .link {
+    color: #2574db;
   }
 }
