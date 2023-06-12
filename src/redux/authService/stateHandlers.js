@@ -27,5 +27,5 @@ export const getUserFulfilledHandler = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
   state.user = payload;
-  console.log(payload);
+  console.log('payload user ', payload);
 };

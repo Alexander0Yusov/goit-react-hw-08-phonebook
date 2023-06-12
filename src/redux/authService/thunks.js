@@ -41,10 +41,14 @@ export const getUserThunk = createAsyncThunk(
     const token = thunkAPI.getState().authCombine.token;
     if (!token) return;
 
-    token && pushToken(token);
+    token && (await pushToken(token));
+
+    console.log('token ', token);
 
     try {
-      return await getUser();
+      const res = await getUser();
+      console.log('res ', res);
+      return res;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

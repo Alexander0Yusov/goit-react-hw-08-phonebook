@@ -7,7 +7,7 @@ import { loginThunk, signUpThunk } from 'redux/authService/thunks';
 
 const AuthForm = () => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('across88@mail.com');
+  const [email, setEmail] = useState('across8888@mail.com');
   const [password, setPassword] = useState('examplepwd12345');
   const [action, setAction] = useState('');
 

@@ -31,7 +31,7 @@ const Header = () => {
       });
     };
 
-    console.log(currentPage || 'home');
+    // console.log(currentPage || 'home');
     // console.log(localStorage.getItem('phonebook_auth'));
     // localStorage.removeItem('phonebook_auth');
 
