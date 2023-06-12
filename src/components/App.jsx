@@ -1,11 +1,3 @@
-// import { useState } from 'react';
-
-// import Section from './Section/Section';
-// import Form from './Form/Form';
-// import ContactList from './ContactList/ContactList';
-// import Filter from './Filter/Filter';
-// import Modal from './Modal/Modal';
-
 import css from './App.module.css';
 import { Routes, Route } from 'react-router-dom';
 import SharedLayout from 'pages/SharedLayout/SharedLayout';
@@ -13,34 +5,10 @@ import Home from 'pages/Home/Home';
 import Contacts from 'pages/Contacts/Contacts';
 import Login from 'pages/Login/Login';
 import Register from 'pages/Register/Register';
+import { useSelector } from 'react-redux';
 
 export const App = () => {
-  // const [showModal, setShowModal] = useState(false);
-  // const [userIdModal, setUserIdModal] = useState('');
-  // const [userNameModal, setUserNameModal] = useState('');
-  // const [userNumberModal, setUserNumberModal] = useState('');
-  // const [userUrlModal, setUserUrlModal] = useState('');
-  // const [actionModal, setActionModal] = useState('Add');
-
-  // const fillForm = (id, name, number, url) => {
-  //   setUserIdModal(id);
-  //   setUserNameModal(name);
-  //   setUserNumberModal(number);
-  //   setUserUrlModal(url);
-  //   setActionModal('Edit');
-  // };
-
-  // const resetForm = () => {
-  //   setUserNameModal('');
-  //   setUserNumberModal('');
-  //   setUserUrlModal('');
-  //   setActionModal('Add');
-  // };
-
-  // const toggleModal = () => {
-  //   setShowModal(prev => !prev);
-  //   resetForm();
-  // };
+  const isLoggedIn = useSelector(state => state.authCombine.user);
 
   return (
     <div
@@ -61,27 +29,10 @@ export const App = () => {
           <Route index element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/contacts" element={<Contacts />} />
+          {isLoggedIn && <Route path="/contacts" element={<Contacts />} />}
+          <Route path="*" element={<h4>Page not found</h4>} />
         </Route>
       </Routes>
-
-      {/* <Section>
-        <h2 className={css.title}>Phonebook</h2>
-        <Filter onModalOpen={toggleModal} />
-        <ContactList toggleModal={toggleModal} fillForm={fillForm} />
-      </Section>
-      {showModal && (
-        <Modal onClose={toggleModal}>
-          <Form
-            toggleModal={toggleModal}
-            id={userIdModal}
-            nameIni={userNameModal}
-            numberIni={userNumberModal}
-            urlIni={userUrlModal}
-            actionModal={actionModal}
-          ></Form>
-        </Modal>
-      )} */}
     </div>
   );
 };

@@ -11,56 +11,47 @@ import { HiUserAdd } from 'react-icons/hi';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.authCombine);
   const location = useLocation();
+  const isLoggedIn = useSelector(state => state.authCombine.user);
 
   useEffect(() => {
     const home = document.querySelector('[data-navigate="home"]');
     const contacts = document.querySelector('[data-navigate="contacts"]');
     const register = document.querySelector('[data-navigate="register"]');
     const login = document.querySelector('[data-navigate="login"]');
-
     const currentPage = location.pathname.split('/')[1];
 
     const resetColor = () => {
       // eslint-disable-next-line
       [home, contacts, register, login].map(item => {
-        if (item.classList.contains(`${css.isActive}`)) {
+        if (item && item.classList.contains(`${css.isActive}`)) {
           item.classList.remove(`${css.isActive}`);
         }
       });
     };
 
-    console.log(currentPage);
+    console.log(currentPage || 'home');
+    console.log(localStorage.getItem('phonebook_auth'));
 
     switch (currentPage) {
       case '':
         resetColor();
-        home.classList.add(`${css.isActive}`);
+        home?.classList.add(`${css.isActive}`);
         break;
       case 'contacts':
         resetColor();
-        contacts.classList.add(`${css.isActive}`);
+        contacts?.classList.add(`${css.isActive}`);
         break;
       case 'register':
         resetColor();
-        register.classList.add(`${css.isActive}`);
+        register?.classList.add(`${css.isActive}`);
         break;
       case 'login':
         resetColor();
-        login.classList.add(`${css.isActive}`);
+        login?.classList.add(`${css.isActive}`);
         break;
       default:
     }
-
-    // if (isHomePage) {
-    //   resetColor();
-    //   home.classList.add(`${css.isActive}`);
-    // }
-    // if (!isHomePage) {
-    //   resetColor();
-    //   movies.classList.add(`${css.isActive}`);
-    // }
   }, [location.pathname]);
 
   return (
@@ -72,33 +63,36 @@ const Header = () => {
             <TiHome className={css.iconHome} />
           </Link>
         </li>
-        <li className={css.li} data-navigate="contacts">
-          <Link to="/contacts" className={css.link}>
-            <FaList className={css.iconList} />
-          </Link>
-        </li>
-        <li className={css.li} data-navigate="register">
-          <Link to="/register" className={css.link}>
-            <HiUserAdd className={css.iconAddUser} />
-          </Link>
-        </li>
-        <li className={css.li} data-navigate="login">
-          <Link to="/login" className={css.link}>
-            <FiLogIn className={css.iconLogin} />
-          </Link>
-        </li>
-        <li className={css.li}>
-          <Link
-            to="/"
-            className={css.link}
-            onClick={() => dispatch(logoutThunk())}
-          >
-            <FiLogOut className={css.iconLogout} />
-          </Link>
-        </li>
-        {user && (
+        {isLoggedIn && (
+          <li className={css.li} data-navigate="contacts">
+            <Link to="/contacts" className={css.link}>
+              <FaList className={css.iconList} />
+            </Link>
+          </li>
+        )}
+        {!isLoggedIn && (
+          <li className={css.li} data-navigate="register">
+            <Link to="/register" className={css.link}>
+              <HiUserAdd className={css.iconAddUser} />
+            </Link>
+          </li>
+        )}
+        {!isLoggedIn && (
+          <li className={css.li} data-navigate="login">
+            <Link to="/login" className={css.link}>
+              <FiLogIn className={css.iconLogin} />
+            </Link>
+          </li>
+        )}
+        {isLoggedIn && (
           <li className={css.li}>
-            <p>{user?.name ? 1 : 0}</p>
+            <Link
+              to="/"
+              className={css.link}
+              onClick={() => dispatch(logoutThunk())}
+            >
+              <FiLogOut className={css.iconLogout} />
+            </Link>
           </li>
         )}
       </ul>

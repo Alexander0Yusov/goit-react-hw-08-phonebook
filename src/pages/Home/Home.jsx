@@ -1,13 +1,13 @@
 import css from './Home.module.scss';
-import defaultImg from '../../images/phoneBook.jpg';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+  const { user } = useSelector(state => state.authCombine);
+
   return (
     <div className={css.home}>
       <h2 className={css.title}>Phonebook</h2>
-      <div className={css.thumb}>
-        <img src={defaultImg} alt="phone" />
-      </div>
+      {user?.name && <p className={css.greeting}>Hi, {user.name}!</p>}
     </div>
   );
 };
