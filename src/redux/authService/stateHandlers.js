@@ -25,6 +25,7 @@ export const logoutFulfilledHandler = state => {
 
 export const getUserFulfilledHandler = (state, { payload }) => {
   state.isLoading = false;
-  state.user = payload;
   state.error = null;
+  state.user = payload;
+  console.log(payload);
 };

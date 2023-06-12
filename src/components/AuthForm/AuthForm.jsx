@@ -40,7 +40,6 @@ const AuthForm = () => {
       dispatch(loginThunk(user));
     }
   };
-  // если локейшн "логин" то поле нейм скрыто Servers
 
   return (
     <form onSubmit={handleSubmit} className={css.authForm} autoComplete="off">

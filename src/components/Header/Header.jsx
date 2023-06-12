@@ -14,6 +14,8 @@ const Header = () => {
   const location = useLocation();
   const isLoggedIn = useSelector(state => state.authCombine.user);
 
+  console.log(isLoggedIn);
+
   useEffect(() => {
     const home = document.querySelector('[data-navigate="home"]');
     const contacts = document.querySelector('[data-navigate="contacts"]');
@@ -31,7 +33,8 @@ const Header = () => {
     };
 
     console.log(currentPage || 'home');
-    console.log(localStorage.getItem('phonebook_auth'));
+    // console.log(localStorage.getItem('phonebook_auth'));
+    // localStorage.removeItem('phonebook_auth');
 
     switch (currentPage) {
       case '':

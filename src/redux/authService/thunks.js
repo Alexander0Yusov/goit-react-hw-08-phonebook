@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUser, login, logout, signUp } from './operations';
+import { pushToken } from 'redux/axiosHerokuInstance';
 
 export const signUpThunk = createAsyncThunk(
   'auth/signUp',
@@ -34,10 +35,14 @@ export const logoutThunk = createAsyncThunk(
   }
 );
 
-// поискать где пригодится
 export const getUserThunk = createAsyncThunk(
   'auth/getUser',
   async (_, thunkAPI) => {
+    const token = thunkAPI.getState().authCombine.token;
+    if (!token) return;
+
+    token && pushToken(token);
+
     try {
       return await getUser();
     } catch (error) {

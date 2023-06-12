@@ -5,10 +5,17 @@ import Home from 'pages/Home/Home';
 import Contacts from 'pages/Contacts/Contacts';
 import Login from 'pages/Login/Login';
 import Register from 'pages/Register/Register';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getUserThunk } from 'redux/authService/thunks';
 
 export const App = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.authCombine.user);
+
+  useEffect(() => {
+    dispatch(getUserThunk());
+  }, [dispatch]);
 
   return (
     <div

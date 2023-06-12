@@ -8,6 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const isAuth = useSelector(state => state.authCombine.token);
+
   useEffect(() => {
     isAuth && navigate('/');
   }, [isAuth, navigate]);

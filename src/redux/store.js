@@ -1,19 +1,30 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { reducer } from './reducer';
+// import { reducer } from './reducer';
+//
+import { contactsDBReducer } from './contactsDB/contactsDBSlice';
+import { filterReducer } from './filter/filterSlice';
+import { authReducer } from './authService/authSlice';
+//
 
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-const persistConfig = {
+const authPersistConfig = {
   key: 'phonebook_auth',
   storage,
   whitelist: ['token'],
 };
 
-const persistedReducer = persistReducer(persistConfig, reducer);
+// console.log(reducer);
+
+const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    contactsDBCombine: contactsDBReducer,
+    filterCombine: filterReducer,
+    authCombine: authPersistedReducer,
+  },
   // лечит ошибки в консоли
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
