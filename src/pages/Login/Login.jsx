@@ -15,7 +15,7 @@ const Login = () => {
 
   return (
     <div className={css.login}>
-      <h2 className={css.title}>Login please</h2>
+      <h2 className={css.title}>Login</h2>
       <AuthForm />
     </div>
   );

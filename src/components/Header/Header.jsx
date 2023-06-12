@@ -6,15 +6,14 @@ import { logoutThunk } from 'redux/authService/thunks';
 import { TiHome } from 'react-icons/ti';
 import { FaList } from 'react-icons/fa';
 import { FiLogIn } from 'react-icons/fi';
-import { FiLogOut } from 'react-icons/fi';
+// import { FiLogOut } from 'react-icons/fi';
+import { GiExitDoor } from 'react-icons/gi';
 import { HiUserAdd } from 'react-icons/hi';
 
 const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const isLoggedIn = useSelector(state => state.authCombine.user);
-
-  console.log(isLoggedIn);
 
   useEffect(() => {
     const home = document.querySelector('[data-navigate="home"]');
@@ -94,7 +93,8 @@ const Header = () => {
               className={css.link}
               onClick={() => dispatch(logoutThunk())}
             >
-              <FiLogOut className={css.iconLogout} />
+              {/* <FiLogOut className={css.iconLogout} /> */}
+              <GiExitDoor className={css.iconLogout} />
             </Link>
           </li>
         )}
