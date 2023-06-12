@@ -38,14 +38,17 @@ export const logoutThunk = createAsyncThunk(
 export const getUserThunk = createAsyncThunk(
   'auth/getUser',
   async (_, thunkAPI) => {
-    const token = thunkAPI.getState().authCombine.token;
-    if (!token) return;
-
-    token && (await pushToken(token));
-
-    console.log('token ', token);
-
     try {
+      const token = thunkAPI.getState().authCombine.token;
+      if (!token) {
+        console.log('Токена нет');
+        return;
+      }
+
+      token && pushToken(token);
+
+      console.log('token ', token);
+
       const res = await getUser();
       console.log('res ', res);
       return res;
