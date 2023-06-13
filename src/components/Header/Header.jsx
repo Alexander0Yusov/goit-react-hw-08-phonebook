@@ -58,7 +58,6 @@ const Header = () => {
 
   return (
     <div className={css.header}>
-      <div className={css.logo}>Logo</div>
       <ul className={css.navbar}>
         <li className={css.li} data-navigate="home">
           <Link to="/" className={css.link}>

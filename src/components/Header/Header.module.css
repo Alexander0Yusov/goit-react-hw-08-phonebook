@@ -7,10 +7,6 @@
   outline: 1px solid tomato;
 }
 
-.logo {
-  display: none;
-}
-
 .navbar {
   display: flex;
   gap: 2px;
