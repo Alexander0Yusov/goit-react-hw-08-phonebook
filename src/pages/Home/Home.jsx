@@ -1,3 +1,4 @@
+import UserData from 'components/UserData/UserData';
 import css from './Home.module.scss';
 import { useSelector } from 'react-redux';
 
@@ -7,7 +8,7 @@ const Home = () => {
   return (
     <div className={css.home}>
       <h2 className={css.title}>Phonebook</h2>
-      {user?.name && <p className={css.greeting}>Hi, {user.name}!</p>}
+      {user && <UserData />}
     </div>
   );
 };

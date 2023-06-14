@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RotatingLines } from 'react-loader-spinner';
@@ -66,3 +67,8 @@ const Contacts = ({ toggleModal, fillForm }) => {
 };
 
 export default Contacts;
+
+Contacts.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+  fillForm: PropTypes.func.isRequired,
+};
