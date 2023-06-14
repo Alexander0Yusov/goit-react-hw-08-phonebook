@@ -7,13 +7,22 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { postContactDBThunk, putContactDBThunk } from 'redux/contactsDB/thunks';
 
-const Form = ({ toggleModal, id, nameIni, numberIni, urlIni, actionModal }) => {
+const Form = ({ toggleModal }) => {
+  const { contacts } = useSelector(state => state.contactsDBCombine);
+  const {
+    selectedUser: {
+      id,
+      name: nameIni,
+      number: numberIni,
+      url: urlIni,
+      action: actionModal,
+    },
+  } = useSelector(state => state.filterCombine);
+  const dispatch = useDispatch();
+
   const [name, setName] = useState(nameIni);
   const [number, setNumber] = useState(numberIni);
   const [url, setUrl] = useState(urlIni);
-
-  const dispatch = useDispatch();
-  const { contacts } = useSelector(state => state.contactsDBCombine);
 
   const isIncludingName = (name, array) => {
     const lowName = name.toLowerCase();

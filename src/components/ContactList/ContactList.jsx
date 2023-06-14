@@ -12,7 +12,7 @@ import ListItem from 'components/ListItem/ListItem';
 const contactsSelector = state => state.contactsDBCombine;
 const filterSelector = state => state.filterCombine;
 
-const Contacts = ({ toggleModal, fillForm }) => {
+const ContactList = ({ toggleModal }) => {
   const dispatch = useDispatch();
   const { contacts, error, isLoading } = useSelector(contactsSelector);
   const { filter } = useSelector(filterSelector);
@@ -44,7 +44,6 @@ const Contacts = ({ toggleModal, fillForm }) => {
             url={url}
             deleteContact={deleteHandler}
             toggleModal={toggleModal}
-            fillForm={fillForm}
           />
         ))}
       </ul>
@@ -66,9 +65,8 @@ const Contacts = ({ toggleModal, fillForm }) => {
   );
 };
 
-export default Contacts;
+export default ContactList;
 
-Contacts.propTypes = {
+ContactList.propTypes = {
   toggleModal: PropTypes.func.isRequired,
-  fillForm: PropTypes.func.isRequired,
 };

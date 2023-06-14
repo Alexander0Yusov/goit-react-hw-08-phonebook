@@ -5,23 +5,18 @@ import { FaPhone } from 'react-icons/fa';
 // import { AiOutlineStar } from 'react-icons/ai';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useState } from 'react';
+import { setSelectedUser } from 'redux/filter/filterSlice';
+import { useDispatch } from 'react-redux';
 
-const ListItem = ({
-  id,
-  name,
-  number,
-  url,
-  deleteContact,
-  toggleModal,
-  fillForm,
-}) => {
+const ListItem = ({ id, name, number, url, deleteContact, toggleModal }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useDispatch();
 
   const listItemClickHandler = e => {
     const clickTag = e.target.tagName;
     if (clickTag === 'LI' || clickTag === 'P') {
       toggleModal();
-      fillForm(id, name, number, url);
+      dispatch(setSelectedUser({ id, name, number, url, action: 'Edit' }));
     }
   };
 
@@ -75,4 +70,5 @@ ListItem.propTypes = {
   number: PropTypes.string.isRequired,
   url: PropTypes.string,
   deleteContact: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 };
