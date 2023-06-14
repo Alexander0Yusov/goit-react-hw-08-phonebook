@@ -7,6 +7,18 @@
   outline: 1px solid green;
 }
 
+.contactList::-webkit-scrollbar {
+  width: 12px; /* ширина для вертикального скролла */
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: #3a3b3d;
+}
+
+/* ползунок скроллбара */
+.contactList::-webkit-scrollbar-thumb {
+  background-color: #b0b1b4;
+  border-radius: 6px;
+}
+
 .contactListUl {
   display: block;
   padding: 4px 4px;

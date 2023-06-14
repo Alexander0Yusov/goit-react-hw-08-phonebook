@@ -93,7 +93,7 @@ const AuthForm = () => {
         />
       </label>
 
-      <button className={css.button} type="submit">
+      <button className={css.authButton} type="submit">
         {action}
       </button>
     </form>

@@ -93,7 +93,7 @@
   display: none;
 }
 
-.button {
+.authButton {
   width: 214px;
   height: 30px;
   font-size: 20px;
@@ -105,16 +105,16 @@
   cursor: pointer;
 }
 
-.form:valid .button {
+.authForm:valid .authButton {
   color: azure;
   box-shadow: 0 0 7px 4px rgba(221, 221, 221, 1);
 }
 
-.form:valid .button:hover,
-.form:valid .button:focus {
+.authForm:valid .authButton:hover,
+.authForm:valid .authButton:focus {
   box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
 }
-.form:valid .button:active {
+.authForm:valid .authButton:active {
   box-shadow: 0 0 6px 2px rgba(221, 221, 221, 1);
 }
 
