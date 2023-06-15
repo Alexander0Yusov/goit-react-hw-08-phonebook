@@ -1,13 +1,14 @@
 import css from './App.module.css';
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, lazy } from 'react';
+import { getUserThunk } from 'redux/authService/thunks';
+
 import SharedLayout from 'pages/SharedLayout/SharedLayout';
 import Home from 'pages/Home/Home';
-import Contacts from 'pages/Contacts/Contacts';
-import Login from 'pages/Login/Login';
-import Register from 'pages/Register/Register';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { getUserThunk } from 'redux/authService/thunks';
+const Register = lazy(() => import('../pages/Register/Register'));
+const Login = lazy(() => import('../pages/Login/Login'));
+const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();

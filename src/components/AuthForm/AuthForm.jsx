@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import css from './AuthForm.module.css';
-// import { login } from 'redux/authService/operations';
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk, signUpThunk } from 'redux/authService/thunks';
+import { setError } from 'redux/authService/authSlice';
 
 const AUTH_ACTION = {
   SIGNUP: 'SignUp',
@@ -16,6 +16,8 @@ const AuthForm = () => {
   const [password, setPassword] = useState('examplepwd12345');
   const [action, setAction] = useState('');
 
+  const { error } = useSelector(state => state.authCombine);
+
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -24,6 +26,11 @@ const AuthForm = () => {
   useEffect(() => {
     location.pathname === '/register' ? setAction(SIGNUP) : setAction(LOGIN);
   }, [location.pathname, SIGNUP, LOGIN]);
+
+  useEffect(() => {
+    error && alert(error);
+    dispatch(setError(null));
+  }, [error, dispatch]);
 
   const handleSubmit = e => {
     e.preventDefault();
