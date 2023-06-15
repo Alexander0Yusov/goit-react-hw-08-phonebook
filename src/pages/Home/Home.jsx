@@ -1,9 +1,10 @@
 import UserData from 'components/UserData/UserData';
 import css from './Home.module.scss';
 import { useSelector } from 'react-redux';
+import { authSelector } from 'redux/stateSelectors';
 
 const Home = () => {
-  const { user } = useSelector(state => state.authCombine);
+  const { user } = useSelector(authSelector);
 
   return (
     <div className={css.home}>

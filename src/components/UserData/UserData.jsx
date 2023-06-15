@@ -1,8 +1,9 @@
+import { authSelector } from 'redux/stateSelectors';
 import css from './UserData.module.scss';
 import { useSelector } from 'react-redux';
 
 const UserData = () => {
-  const { user } = useSelector(state => state.authCombine);
+  const { user } = useSelector(authSelector);
 
   return (
     <div className={css.userData}>

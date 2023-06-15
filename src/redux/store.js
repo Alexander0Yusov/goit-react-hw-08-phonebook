@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { reducer } from './reducer';
-//
+// import { reducer } from './reducer'; - на случай отдельной комбинации
 import { contactsDBReducer } from './contactsDB/contactsDBSlice';
 import { filterReducer } from './filter/filterSlice';
 import { authReducer } from './authService/authSlice';
-//
 
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';

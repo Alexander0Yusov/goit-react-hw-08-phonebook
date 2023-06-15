@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk, signUpThunk } from 'redux/authService/thunks';
 import { setError } from 'redux/authService/authSlice';
+import { authSelector } from 'redux/stateSelectors';
 
 const AUTH_ACTION = {
   SIGNUP: 'SignUp',
@@ -16,7 +17,7 @@ const AuthForm = () => {
   const [password, setPassword] = useState('examplepwd12345');
   const [action, setAction] = useState('');
 
-  const { error } = useSelector(state => state.authCombine);
+  const { error } = useSelector(authSelector);
 
   const location = useLocation();
   const dispatch = useDispatch();

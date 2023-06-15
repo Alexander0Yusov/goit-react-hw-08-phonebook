@@ -9,11 +9,12 @@ import { FiLogIn } from 'react-icons/fi';
 
 import { GiExitDoor } from 'react-icons/gi';
 import { HiUserAdd } from 'react-icons/hi';
+import { authSelector } from 'redux/stateSelectors';
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const isLoggedIn = useSelector(state => state.authCombine.user);
+  const { user } = useSelector(authSelector);
 
   useEffect(() => {
     const home = document.querySelector('[data-navigate="home"]');
@@ -30,10 +31,6 @@ const Navigation = () => {
         }
       });
     };
-
-    // console.log(currentPage || 'home');
-    // console.log(localStorage.getItem('phonebook_auth'));
-    // localStorage.removeItem('phonebook_auth');
 
     switch (currentPage) {
       case '':
@@ -64,28 +61,28 @@ const Navigation = () => {
             <TiHome className={css.iconHome} />
           </Link>
         </li>
-        {isLoggedIn && (
+        {user && (
           <li className={css.li} data-navigate="contacts">
             <Link to="/contacts" className={css.link}>
               <FaList className={css.iconList} />
             </Link>
           </li>
         )}
-        {!isLoggedIn && (
+        {!user && (
           <li className={css.li} data-navigate="register">
             <Link to="/register" className={css.link}>
               <HiUserAdd className={css.iconAddUser} />
             </Link>
           </li>
         )}
-        {!isLoggedIn && (
+        {!user && (
           <li className={css.li} data-navigate="login">
             <Link to="/login" className={css.link}>
               <FiLogIn className={css.iconLogin} />
             </Link>
           </li>
         )}
-        {isLoggedIn && (
+        {user && (
           <li className={css.li}>
             <Link
               to="/"

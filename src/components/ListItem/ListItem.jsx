@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import css from './ListItem.module.css';
 import { CiSquareRemove } from 'react-icons/ci';
 import { FaPhone } from 'react-icons/fa';
-// import { AiOutlineStar } from 'react-icons/ai';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useState } from 'react';
 import { setSelectedUser } from 'redux/filter/filterSlice';
@@ -46,10 +45,6 @@ const ListItem = ({ id, name, number, url, deleteContact, toggleModal }) => {
       <button className={css.button} type="button">
         <FaPhone className={css.callIcon} />
       </button>
-
-      {/* <button className={css.button} type="button">
-        <AiOutlineStar className={css.starIcon} />
-      </button> */}
 
       <button
         onClick={() => deleteContact(id)}

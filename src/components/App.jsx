@@ -6,13 +6,14 @@ import { getUserThunk } from 'redux/authService/thunks';
 
 import SharedLayout from 'pages/SharedLayout/SharedLayout';
 import Home from 'pages/Home/Home';
+import { authSelector } from 'redux/stateSelectors';
 const Register = lazy(() => import('../pages/Register/Register'));
 const Login = lazy(() => import('../pages/Login/Login'));
 const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(state => state.authCombine.user);
+  const isLoggedIn = useSelector(authSelector);
 
   useEffect(() => {
     dispatch(getUserThunk());

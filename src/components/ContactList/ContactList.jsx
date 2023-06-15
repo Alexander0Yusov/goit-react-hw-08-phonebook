@@ -8,9 +8,7 @@ import {
 } from 'redux/contactsDB/thunks';
 import css from './ContactList.module.css';
 import ListItem from 'components/ListItem/ListItem';
-
-const contactsSelector = state => state.contactsDBCombine;
-const filterSelector = state => state.filterCombine;
+import { contactsSelector, filterSelector } from 'redux/stateSelectors';
 
 const ContactList = ({ toggleModal }) => {
   const dispatch = useDispatch();

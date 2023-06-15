@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { postContactDBThunk, putContactDBThunk } from 'redux/contactsDB/thunks';
+import { contactsSelector, filterSelector } from 'redux/stateSelectors';
 
 const Form = ({ toggleModal }) => {
-  const { contacts } = useSelector(state => state.contactsDBCombine);
+  const { contacts } = useSelector(contactsSelector);
   const {
     selectedUser: {
       id,
@@ -17,7 +18,7 @@ const Form = ({ toggleModal }) => {
       url: urlIni,
       action: actionModal,
     },
-  } = useSelector(state => state.filterCombine);
+  } = useSelector(filterSelector);
   const dispatch = useDispatch();
 
   const [name, setName] = useState(nameIni);
