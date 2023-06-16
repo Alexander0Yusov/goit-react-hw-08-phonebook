@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getUser, login, logout, signUp } from './operations';
+import { getUser, login, logout, signUp } from './authOperations';
 import { pushToken } from 'redux/axiosHerokuInstance';
 
 export const signUpThunk = createAsyncThunk(
