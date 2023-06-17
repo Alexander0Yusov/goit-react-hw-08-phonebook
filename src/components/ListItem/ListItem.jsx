@@ -11,6 +11,11 @@ import {
   patchContactThunk,
 } from 'redux/contactsService/thunks';
 
+export const FAVORITE = {
+  IsFavorite: 'IsFavorite',
+  NotFavorite: 'NotFavorite',
+};
+
 const ListItem = ({
   id,
   name,
@@ -23,25 +28,25 @@ const ListItem = ({
   const dispatch = useDispatch();
 
   const toggleFavorite = () => {
-    if (isFavorite === 'isFavorite') {
+    if (isFavorite === FAVORITE.IsFavorite) {
       dispatch(
         patchContactThunk({
           id,
           name,
-          number: `${number}|-|${url}|-|notFavorite`,
+          number: `${number}|-|${url}|-|${FAVORITE.NotFavorite}`,
         })
       );
-      setIsFavorite('notFavorite');
+      setIsFavorite(FAVORITE.NotFavorite);
       return;
     }
     dispatch(
       patchContactThunk({
         id,
         name,
-        number: `${number}|-|${url}|-|isFavorite`,
+        number: `${number}|-|${url}|-|${FAVORITE.IsFavorite}`,
       })
     );
-    setIsFavorite('isFavorite');
+    setIsFavorite(FAVORITE.IsFavorite);
   };
 
   const listItemClickHandler = e => {
@@ -64,7 +69,7 @@ const ListItem = ({
         {url && (
           <img className={css.photoDemo} src={url} alt="User portrait"></img>
         )}
-        {isFavorite === 'isFavorite' ? (
+        {isFavorite === FAVORITE.IsFavorite ? (
           <MdFavorite className={css.favoriteIcon} />
         ) : (
           <MdFavoriteBorder className={css.favoriteBorderIcon} />

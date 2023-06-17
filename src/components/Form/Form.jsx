@@ -1,15 +1,15 @@
+import css from './Form.module.css';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { FiUser } from 'react-icons/fi';
 import { MdOutlineAddAPhoto } from 'react-icons/md';
-import css from './Form.module.css';
-import PropTypes from 'prop-types';
-
 import { useDispatch, useSelector } from 'react-redux';
 import {
   postContactThunk,
   patchContactThunk,
 } from 'redux/contactsService/thunks';
 import { contactsSelector, filterSelector } from 'redux/stateSelectors';
+import { FAVORITE } from 'components/ListItem/ListItem';
 
 const Form = ({ toggleModal }) => {
   const { contacts } = useSelector(contactsSelector);
@@ -50,7 +50,7 @@ const Form = ({ toggleModal }) => {
   const handlerSubmit = e => {
     e.preventDefault();
     actionModal === 'Add' &&
-      addUser({ name, number: `${number}|-|${url}|-|notFavorite` });
+      addUser({ name, number: `${number}|-|${url}|-|${FAVORITE.NotFavorite}` });
     actionModal === 'Edit' &&
       editUser({ id, name, number: `${number}|-|${url}|-|${isFavorite}` });
 

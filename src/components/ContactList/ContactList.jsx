@@ -27,17 +27,20 @@ const ContactList = ({ toggleModal }) => {
   return (
     <div className={css.contactList}>
       <ul className={css.contactListUl}>
-        {filterByName()?.map(({ id, name, number }) => (
-          <ListItem
-            key={id}
-            id={id}
-            name={name}
-            number={number.split('|-|')[0]}
-            url={number.split('|-|')[1]}
-            isFavorite={number.split('|-|')[2]}
-            toggleModal={toggleModal}
-          />
-        ))}
+        {filterByName()?.map(({ id, name, number }) => {
+          const [number_, url_, isFavorite_] = number.split('|-|');
+          return (
+            <ListItem
+              key={id}
+              id={id}
+              name={name}
+              number={number_}
+              url={url_}
+              isFavorite={isFavorite_}
+              toggleModal={toggleModal}
+            />
+          );
+        })}
       </ul>
 
       {isLoading && (

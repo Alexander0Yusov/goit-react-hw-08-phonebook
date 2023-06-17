@@ -44,13 +44,9 @@ export const getUserThunk = createAsyncThunk(
         console.log('Токена нет');
         return;
       }
-
       pushToken(token);
-
       console.log('token ', token);
-
       const res = await getUser();
-      console.log('res ', res);
       return res;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
