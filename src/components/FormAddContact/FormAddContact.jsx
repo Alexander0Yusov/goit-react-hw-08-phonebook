@@ -1,33 +1,20 @@
-import css from './Form.module.css';
+import css from './FormAddContact.module.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { FiUser } from 'react-icons/fi';
 import { MdOutlineAddAPhoto } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  postContactThunk,
-  patchContactThunk,
-} from 'redux/contactsService/thunks';
-import { contactsSelector, filterSelector } from 'redux/stateSelectors';
+import { postContactThunk } from 'redux/contactsService/thunks';
+import { contactsSelector } from 'redux/stateSelectors';
 import { FAVORITE } from 'components/ListItem/ListItem';
 
-const Form = ({ toggleModal }) => {
-  const { contacts } = useSelector(contactsSelector);
-  const {
-    selectedUser: {
-      id,
-      name: nameIni,
-      number: numberIni,
-      url: urlIni,
-      isFavorite,
-      action: actionModal,
-    },
-  } = useSelector(filterSelector);
-  const dispatch = useDispatch();
+const FormAddContact = ({ toggleModal }) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [url, setUrl] = useState('');
 
-  const [name, setName] = useState(nameIni);
-  const [number, setNumber] = useState(numberIni);
-  const [url, setUrl] = useState(urlIni);
+  const { contacts } = useSelector(contactsSelector);
+  const dispatch = useDispatch();
 
   const isIncludingName = (name, array) => {
     const lowName = name.toLowerCase();
@@ -43,17 +30,9 @@ const Form = ({ toggleModal }) => {
     dispatch(postContactThunk(newItem));
   };
 
-  const editUser = newItem => {
-    dispatch(patchContactThunk(newItem));
-  };
-
   const handlerSubmit = e => {
     e.preventDefault();
-    actionModal === 'Add' &&
-      addUser({ name, number: `${number}|-|${url}|-|${FAVORITE.NotFavorite}` });
-    actionModal === 'Edit' &&
-      editUser({ id, name, number: `${number}|-|${url}|-|${isFavorite}` });
-
+    addUser({ name, number: `${number}|-|${url}|-|${FAVORITE.NotFavorite}` });
     toggleModal();
   };
 
@@ -122,14 +101,14 @@ const Form = ({ toggleModal }) => {
       </label>
 
       <button className={css.button} type="submit">
-        {actionModal}
+        {'Add'}
       </button>
     </form>
   );
 };
 
-export default Form;
+export default FormAddContact;
 
-Form.propTypes = {
+FormAddContact.propTypes = {
   toggleModal: PropTypes.func.isRequired,
 };
