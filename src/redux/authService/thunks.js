@@ -43,6 +43,7 @@ export const getUserThunk = createAsyncThunk(
       return;
       // return thunkAPI.rejectWithValue('No valid token'); вариант
     }
+
     pushToken(token);
     console.log('token ', token);
     try {
