@@ -10,7 +10,6 @@
   margin: 0 auto;
   border: 1px solid #b0b1b4;
   border-radius: 20px;
-  /* background-color: #3a3b3d; */
   background-color: #242527;
 }
 
@@ -24,7 +23,6 @@
   background-color: #3a3b3d;
   box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
   overflow: hidden;
-  /* border: 1px solid tomato; */
 
   margin-bottom: 18px;
 }
@@ -37,7 +35,8 @@
 }
 
 .formLabel {
-  margin-bottom: 20px;
+  position: relative;
+  margin-bottom: 26px;
 }
 
 .input {
@@ -75,7 +74,6 @@
   width: 60px;
   height: 60px;
   cursor: pointer;
-  /* border: 1px solid tomato; */
 }
 
 .icon {
@@ -102,12 +100,12 @@
   background-color: #3a3b3d;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
 }
 
 .authForm:valid .authButton {
-  color: azure;
   box-shadow: 0 0 4px 2px rgba(221, 221, 221, 1);
+  color: azure;
+  cursor: pointer;
 }
 
 .authForm:valid .authButton:hover,
@@ -125,6 +123,10 @@
   text-align: center;
 }
 
-/* .formParagraph {
-  margin: 4px 0;
-} */
+.errorText {
+  position: absolute;
+  margin: 4;
+  font-size: 9px;
+
+  color: #b0b1b4;
+}
