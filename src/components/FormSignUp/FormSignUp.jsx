@@ -14,7 +14,8 @@ const signupSchema = Yup.object().shape({
     .required('Enter Your name, please!'),
   email: Yup.string()
     .email('Invalid email')
-    .required('Enter Your email, please!'),
+    .required('Enter Your email, please!')
+    .matches(/^[\w.-]+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$/, 'Enter valid email'),
   password: Yup.string()
     .min(7)
     .required('Enter Your password, please!')
